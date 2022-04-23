@@ -34,8 +34,9 @@
   },
   "homepage": "https://github.com/BRAVO68WEB/b68-cli#readme",
   "dependencies": {
-    "boxen": "^6.2.1",
     "chalk": "^5.0.1",
-    "yargs": "^17.4.1"
+    "commander": "^9.2.0",
+    "conf": "^10.1.2",
+    "node-fetch": "^3.2.3"
   }
 }
