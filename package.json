@@ -1,0 +1,37 @@
+{
+  "name": "b68-cli",
+  "version": "1.0.0",
+  "description": "A Command Line Application to interact with B68WEB API",
+  "main": "bin/app.js",
+  "scripts": {
+    "dev": "node bin/app.js"
+  },
+  "bin": {
+    "hello": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BRAVO68WEB/b68-cli.git"
+  },
+  "keywords": [
+    "b68",
+    "b68cli",
+    "cli",
+    "bravo68web",
+    "bravo68web-api",
+    "api-cli",
+    "api",
+    "rest",
+    "connector"
+  ],
+  "author": "BRAVO68WEB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BRAVO68WEB/b68-cli/issues"
+  },
+  "homepage": "https://github.com/BRAVO68WEB/b68-cli#readme",
+  "dependencies": {
+    "boxen": "^6.2.1",
+    "chalk": "^5.0.1"
+  }
+}
