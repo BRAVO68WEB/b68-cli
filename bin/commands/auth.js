@@ -1,5 +1,7 @@
 import axios from "axios";
 import fs from "fs";
+import os from "os";
+
 export const login = (email, apikey) => {
   console.log("Validation initaited ...");
   var config = {
@@ -10,17 +12,21 @@ export const login = (email, apikey) => {
     .then(function (response) {
       if (response.data === "OK") {
         console.log("Credentials validated !!");
-        fs.open("authConfig.json", "w", function (err, file) {
-          fs.appendFile(
-            "authConfig.json",
-            `{\n\t"email": "${email}",\n\t"apikey": "${apikey}"\n}`,
-            function (err) {
-              if (err) throw err;
-              console.log("Saved your auth configuration");
-            }
-          );
-          if (err) throw err;
-        });
+        fs.open(
+          `${os.homedir()}/.b68-cli.authConfig.json`,
+          "w",
+          function (err, file) {
+            fs.appendFile(
+              `authConfig.json`,
+              `{\n\t"email": "${email}",\n\t"apikey": "${apikey}"\n}`,
+              function (err) {
+                if (err) throw err;
+                console.log("Saved your auth configuration");
+              }
+            );
+            if (err) throw err;
+          }
+        );
       } else {
         console.log("Validation failed!");
       }
