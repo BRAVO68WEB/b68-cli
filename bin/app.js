@@ -63,7 +63,9 @@ program
       return console.log("Please specify a command");
     }
   });
-const gistsCmds = program.command("gists");
+const gistsCmds = program
+  .command("gists")
+  .description("Gists related commands");
 
 gistsCmds
   .command("create")

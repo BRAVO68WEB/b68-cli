@@ -1,6 +1,6 @@
 import axios from "axios";
 import moment from "moment";
-export const create = (title, short, message, tags) => {
+export const create = (title, message, short, tags) => {
   console.log("Saving your gist ...");
   console.log(" ");
 
@@ -53,7 +53,7 @@ export const view = (id) => {
       );
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error.message);
     });
 };
 export default {
