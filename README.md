@@ -1,6 +1,11 @@
 # B68-CLI
 
+![npm-version](https://badgen.net/npm/v/b68-cli)
+![npm-license](https://badgen.net/npm/license/b68-cli)
+
 A Command Line Application to interact with Bravo68WEB API
+
+![npm-pkg](https://nodei.co/npm/b68-cli.png)
 
 ## Installation
 
