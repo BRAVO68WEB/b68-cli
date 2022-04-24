@@ -1,6 +1,6 @@
 {
   "name": "b68-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Command Line Application to interact with B68WEB API",
   "main": "bin/app.js",
   "scripts": {
