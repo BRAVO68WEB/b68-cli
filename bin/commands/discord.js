@@ -1,12 +1,13 @@
 import fetch from "node-fetch";
 import moment from "moment";
+import APIURL from "../../api.config.js";
 
 export const userStatus = () => {
-  let url = "https://api.b68dev.xyz/me/discord/activity";
+  let url = APIURL + "/me/discord/activity";
   return fetch(url)
     .then(async (response) => {
       const data = await response.json();
-      var statusObj;
+      let statusObj;
       if (
         data.data.discord_status === "online" ||
         data.data.discord_status === "dnd" ||
@@ -30,11 +31,11 @@ export const userStatus = () => {
 };
 
 export const spotify = () => {
-  let url = "https://api.b68dev.xyz/me/discord/activity";
+  let url = APIURL + "/me/discord/activity";
   return fetch(url)
     .then(async (response) => {
       const data = await response.json();
-      var statusObj = {};
+      let statusObj = {};
       if (data.data.listening_to_spotify) {
         statusObj.song = data.data.spotify.song;
         statusObj.artist = data.data.spotify.artist;
@@ -61,22 +62,22 @@ export const spotify = () => {
 };
 
 export const activity = () => {
-  let url = "https://api.b68dev.xyz/me/discord/activity";
+  let url = APIURL + "/me/discord/activity";
   return fetch(url)
     .then(async (response) => {
       const data = await response.json();
-      var statusObj = {};
-      var userAct = data.data.activities;
-      var userDetails = data.data.discord_user;
+      let statusObj = {};
+      let userAct = data.data.activities;
+      let userDetails = data.data.discord_user;
       userDetails.avatar_url =
         "https://cdn.discordapp.com/avatars/" +
         userDetails.id +
         "/" +
         userDetails.avatar +
         ".png";
-      var userActRevamped = userAct.reduce(function (map, obj) {
-        var toShow = {};
-        var assets = {};
+      let userActRevamped = userAct.reduce(function (map, obj) {
+        let toShow = {};
+        let assets = {};
         if (obj.assets) {
           if (obj.name === "Spotify") {
             assets = {

@@ -41,6 +41,7 @@ program
   .command("auth")
   .description("Authenticate with BRAVO68WEB API")
   .option("-l, --login", "Login to BRAVO68WEB API", false)
+  .option("-r, --register", "Register with BRAVO68WEB API", false)
   .name("auth")
   .argument("<email>", {
     name: "email",
@@ -59,6 +60,12 @@ program
         return;
       }
       auth.login(email, apikey);
+    } else if (options.register) {
+      if (!email) {
+        console.log("Please provide an email");
+        return;
+      }
+      auth.register(email);
     } else {
       return console.log("Please specify a command");
     }

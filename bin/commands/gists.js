@@ -1,19 +1,21 @@
 import axios from "axios";
 import moment from "moment";
+import APIURL from "../../api.config.js";
+
 export const create = (title, message, short, tags) => {
   console.log("Saving your gist ...");
   console.log(" ");
 
-  var data = JSON.stringify({
+  let data = JSON.stringify({
     title: title,
     short: short,
     message: message,
     tags: tags.split(",", 2),
   });
 
-  var config = {
+  let config = {
     method: "post",
-    url: "https://api.b68dev.xyz/api/public/gists",
+    url: APIURL + "/api/public/gists",
     headers: {
       "Content-Type": "application/json",
     },
@@ -24,7 +26,8 @@ export const create = (title, message, short, tags) => {
     .then(function (response) {
       console.log(
         "Gist saved successfully at " +
-          "https://api.b68dev.xyz/api/public/gists/" +
+          APIURL +
+          "/api/public/gists/" +
           response.data.id
       );
     })
@@ -36,9 +39,9 @@ export const create = (title, message, short, tags) => {
 export const view = (id) => {
   console.log("Fetching your gist ...");
   console.log(" ");
-  var config = {
+  let config = {
     method: "get",
-    url: "https://api.b68dev.xyz/api/public/gists/" + id,
+    url: APIURL + "/api/public/gists/" + id,
   };
 
   axios(config)
