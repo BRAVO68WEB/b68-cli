@@ -41,9 +41,12 @@ program
   .command("auth")
   .description("Authenticate with BRAVO68WEB API")
   .option("-l, --login", "Login to BRAVO68WEB API", false)
+  .option("-o, --otp", "Login with OTP", false)
   .option("-r, --register", "Register with BRAVO68WEB API", false)
+  .option("-c, --check", "Check if you are authenticated", false)
+  .option("-d, --delete", "Delete your authentication token", false)
   .name("auth")
-  .argument("<email>", {
+  .argument("[email]", {
     name: "email",
     required: false,
     description: "email to login with",
@@ -60,13 +63,28 @@ program
         return;
       }
       auth.login(email, apikey);
-    } else if (options.register) {
+    }
+    else if(options.otp){
+      if (!email) {
+        console.log("Please provide an email");
+        return;
+      }
+      auth.loginOtp(email);
+    }
+    else if (options.register) {
       if (!email) {
         console.log("Please provide an email");
         return;
       }
       auth.register(email);
-    } else {
+    }
+    else if (options.check) {
+      auth.check();
+    }
+    else if (options.delete) {
+      auth.logout();
+    }
+    else {
       return console.log("Please specify a command");
     }
   });

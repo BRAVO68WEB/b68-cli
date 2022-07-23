@@ -1,4 +1,4 @@
 // const APIURL = "https://api.b68dev.xyz";
-const APIURL = "http://localhost:9000";
+const APIURL = "http://127.0.0.1:9000";
 
 export default APIURL;
