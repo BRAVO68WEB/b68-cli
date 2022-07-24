@@ -28,8 +28,8 @@ Options:
 Commands:
   status                           Get the status of the API
   discord [options]                Get the Discord Status of the API
-  auth [options] <email> [apikey]  Authenticate with BRAVO68WEB API
+  yt [options] <url>               Interact within Youtube API
+  auth [options] <email> <apiKey>  Authenticate with BRAVO68WEB API
   gists                            Gists related commands
   help [command]                   display help for command
-
 ```

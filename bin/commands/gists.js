@@ -59,6 +59,7 @@ export const view = (id) => {
       console.log(error.message);
     });
 };
+
 export default {
   create,
   view,

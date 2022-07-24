@@ -1,6 +1,6 @@
 {
   "name": "b68-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Command Line Application to interact with B68WEB API",
   "main": "bin/app.js",
   "scripts": {
@@ -40,6 +40,8 @@
     "conf": "^10.1.2",
     "configstore": "^6.0.0",
     "moment": "^2.29.3",
-    "node-fetch": "^3.2.3"
+    "node-fetch": "^3.2.3",
+    "query-string": "^7.1.1",
+    "url-parse": "^1.5.10"
   }
 }

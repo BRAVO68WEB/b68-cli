@@ -6,6 +6,7 @@ import status from "../bin/commands/status.js";
 import discord from "../bin/commands/discord.js";
 import auth from "../bin/commands/auth.js";
 import gists from "../bin/commands/gists.js";
+import yt from "../bin/commands/yt.js";
 
 program
   .name("b68")
@@ -38,6 +39,34 @@ program
   });
 
 program
+  .command("yt")
+  .description("Interact within Youtube API")
+  .name("yt")
+  .option("-vi, --video-info", "Get YT video info", false)
+  .option("-ci, --channel-info", "Get YT channel info", false)
+  .option("-pi, --playlist-info", "Get YT playlist info", false)
+  .option("-pt, --playlist-items", "Get YT Playlist Items info", false)
+  .option("-s, --spotify", "Get Spotify Equivalent", false)
+  .argument("<url>", "url to interact with")
+  .action((url, options) => {
+    if (options.videoInfo) {
+      yt.videoInfo(url);
+    } else if (options.channelInfo) {
+      yt.channelInfo(url);
+    } else if (options.playlistInfo) {
+      yt.playlistInfo(url);
+    } else if (options.playlistItems) {
+      yt.playlistItems(url);
+    } else if (options.spotify) {
+      yt.spotify(url);
+    }
+    else {
+      console.log("Please specify a command");
+      process.exit(1);
+    }
+  });
+
+program
   .command("auth")
   .description("Authenticate with BRAVO68WEB API")
   .option("-l, --login", "Login to BRAVO68WEB API", false)
@@ -46,35 +75,27 @@ program
   .option("-c, --check", "Check if you are authenticated", false)
   .option("-d, --delete", "Delete your authentication token", false)
   .name("auth")
-  .argument("[email]", {
-    name: "email",
-    required: false,
-    description: "email to login with",
-  })
-  .argument("[apikey]", {
-    name: "apikey",
-    required: false,
-    description: "apikey to login with",
-  })
-  .action((email, apikey, options) => {
+  .argument("<email>", "email to login with")
+  .argument("<apiKey>", "apiKey to login with")
+  .action((email, apiKey, options) => {
     if (options.login) {
-      if (!email || !apikey) {
-        console.log("Please provide an email and apikey");
-        return;
+      if (!email || !apiKey) {
+        console.log("Please provide an email and apiKey");
+        process.exit(1);
       }
-      auth.login(email, apikey);
+      auth.login(email, apiKey);
     }
     else if(options.otp){
       if (!email) {
         console.log("Please provide an email");
-        return;
+        process.exit(1);
       }
       auth.loginOtp(email);
     }
     else if (options.register) {
       if (!email) {
         console.log("Please provide an email");
-        return;
+        process.exit(1);
       }
       auth.register(email);
     }
@@ -85,9 +106,11 @@ program
       auth.logout();
     }
     else {
-      return console.log("Please specify a command");
+      console.log("Please specify a command");
+      process.exit(1);
     }
   });
+  
 const gistsCmds = program
   .command("gists")
   .description("Gists related commands");
@@ -95,10 +118,10 @@ const gistsCmds = program
 gistsCmds
   .command("create")
   .description("Create gists at BRAVO68WEB API's Gists Store")
-  .argument("[title]", "title of gist")
-  .argument("[message]", "content of gist")
-  .argument("[short]", "short description of gist")
-  .argument("[tags]", "tags of gist")
+  .argument("<title>", "title of gist")
+  .argument("<message>", "content of gist")
+  .argument("<short>", "short description of gist")
+  .argument("<tags>", "tags of gist")
   .action((title, message, short, tags) => {
     if (!title || !message) {
       console.log("Please provide a title and message");

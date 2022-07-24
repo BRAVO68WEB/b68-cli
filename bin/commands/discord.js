@@ -18,11 +18,13 @@ export const userStatus = () => {
         statusObj = "offline";
       }
       if (response.status === 200) {
-        return console.log(
+        console.log(
           `${data.data.discord_user.username}#${data.data.discord_user.discriminator} is ${statusObj} on Discord`
         );
+        process.exit(0);
       } else {
-        return console.log(`BRAVO68WEB API might be running low`);
+        console.log(`BRAVO68WEB API might be running low`);
+        process.exit(0);
       }
     })
     .catch((err) => {
@@ -44,16 +46,19 @@ export const spotify = () => {
       }
       if (response.status === 200) {
         if (data.data.listening_to_spotify) {
-          return console.log(
+          console.log(
             `${data.data.discord_user.username}#${data.data.discord_user.discriminator} is listening to ${statusObj.song} by ${statusObj.artist} on Spotify`
           );
+          process.exit(0);
         } else {
-          return console.log(
+          console.log(
             `${data.data.discord_user.username}#${data.data.discord_user.discriminator} is not listening to Spotify according to Discord`
           );
+          process.exit(0);
         }
       } else {
-        return console.log(`BRAVO68WEB API might be running low`);
+        console.log(`BRAVO68WEB API might be running low`);
+        process.exit(0);
       }
     })
     .catch((err) => {
@@ -128,7 +133,7 @@ export const activity = () => {
       if (response.status === 200) {
         if (data.data.activities.length > 0) {
           if (userActRevamped["Visual Studio Code"]) {
-            return console.log(
+            console.log(
               `${data.data.discord_user.username}#${
                 data.data.discord_user.discriminator
               } is working on ${
@@ -139,30 +144,36 @@ export const activity = () => {
                 userActRevamped["Visual Studio Code"].startTime
               ).format("DD-MM-YYYY h:mm:ss")}`
             );
+            process.exit(0);
           } else if (userActRevamped["Spotify"]) {
-            return console.log(
+            console.log(
               `${data.data.discord_user.username}#${data.data.discord_user.discriminator} is listening to ${userActRevamped["Spotify"].details} by ${userActRevamped["Spotify"].state} on Spotify`
             );
+            process.exit(0);
           } else if (userActRevamped["Custom Status"]) {
-            return console.log(
+            console.log(
               `${data.data.discord_user.username}#${
                 data.data.discord_user.discriminator
               } :- ${userActRevamped["Custom Status"].state} (${moment(
                 userActRevamped["Custom Status"].startTime
               ).format("DD-MM-YYYY HH:mm:ss")})`
             );
+            process.exit(0);
           }
         } else if (data.data.activities.length > 0) {
-          return console.log(
+          console.log(
             `${data.data.discord_user.username}#${data.data.discord_user.discriminator} is playing Games`
           );
+          process.exit(0);
         } else {
-          return console.log(
+          console.log(
             `${data.data.discord_user.username}#${data.data.discord_user.discriminator} is not doing anything according to Discord`
           );
+          process.exit(0);
         }
       } else {
-        return console.log(`BRAVO68WEB API might be running low`);
+        console.log(`BRAVO68WEB API might be running low`);
+        process.exit(0);
       }
     })
     .catch((err) => {
