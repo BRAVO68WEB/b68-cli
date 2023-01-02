@@ -166,5 +166,6 @@ export default {
   register,
   check,
   logout,
-  loginOtp
+  loginOtp,
+  configStore
 };

@@ -7,6 +7,8 @@ import discord from "../bin/commands/discord.js";
 import auth from "../bin/commands/auth.js";
 import gists from "../bin/commands/gists.js";
 import yt from "../bin/commands/yt.js";
+import upload from "../bin/commands/upload.js";
+import config from "../bin/commands/config.js";
 
 program
   .name("b68")
@@ -75,8 +77,8 @@ program
   .option("-c, --check", "Check if you are authenticated", false)
   .option("-d, --delete", "Delete your authentication token", false)
   .name("auth")
-  .argument("<email>", "email to login with")
-  .argument("<apiKey>", "apiKey to login with")
+  .argument("[[email]", "email to login with")
+  .argument("[apiKey]", "apiKey to login with")
   .action((email, apiKey, options) => {
     if (options.login) {
       if (!email || !apiKey) {
@@ -146,6 +148,26 @@ gistsCmds
       return;
     }
     gists.view(id);
+  });
+
+program
+  .command("config")
+  .description("Configure the CLI")
+  .action(() => {
+    console.log("Configure the CLI");
+    config.configure();
+  })
+
+program
+  .command("upload")
+  .description("Upload files to BRAVO68WEB API's File Store")
+  .argument("<file>", "file to upload")
+  .action((file) => {
+    if (!file) {
+      console.log("Please provide a file");
+      return;
+    }
+    upload.upload(file);
   });
 
 program.parse();
